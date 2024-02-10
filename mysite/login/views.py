@@ -8,9 +8,12 @@ from django.contrib.auth import authenticate,login as auth_login,logout
 
 def login(request):
     if request.method=='POST':
-        email=request.POST.get('email')
+        firstname=request.POST.get('fname')
         password2=request.POST.get('password')
-        user_model=authenticate(request,email=email,password=password2)
+        print("Firstname:", firstname)
+        print("Password:", password2)
+        user_model=authenticate(request,username=firstname,password=password2)
+        print("Authenticated User:", user_model)
         if user_model is not None:
             auth_login(request,user_model)
             return redirect('home')
