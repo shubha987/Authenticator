@@ -10,10 +10,7 @@ def login(request):
     if request.method=='POST':
         email=request.POST.get('email')
         password2=request.POST.get('password')
-        print("Email:", email)
-        print("Password:", password2)
         user_model=authenticate(request,email=email,password=password2)
-        print("Authenticated User:", user_model)
         if user_model is not None:
             auth_login(request,user_model)
             return redirect('home')
