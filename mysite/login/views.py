@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect,HttpResponse
 from datetime import datetime
 from login.models import User
 from django.contrib.auth import authenticate,login as auth_login,logout
-
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -43,9 +43,10 @@ def register(request):
          return redirect('login')
     return render(request,'register.html')
 
+@login_required(login_url='login')
 def home(request):
     return render(request,'home.html')
 
-def logout(request):
+def logoutpage(request):
     logout(request)
     return redirect('login')
